@@ -16,31 +16,26 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 
 const CreationEtDeveloppement = ()=>{
-
   const [modalVisible, setModalVisible] = useState(false);
-
-
-  //Constante permettant de savoir si l'utilisateur à appuyer sur Accepter ou sur Refuser
-  const [consentement, setConsentement] = useState();
+  
   const [buttonPressed, setButtonPressed] = useState(false);
-
-    return(
-        <View style={Styles.container}>
-           <LinearGradient
+  return(
+    <View style={Styles.container}>
+      <LinearGradient
            colors={['rgb(175,146,255)', 'rgba(202,187,254,1)', 'rgba(209,240,247,1)']}
            start={{ x: 0, y: 0 }}
            end={{ x: 1, y: 0 }}
            locations={[0, 0.35, 1]}
-          style={Styles.container}
+          style={styles.container}
         >
-            <Logo />
-            <View style={[Styles.ViewText, {top: -20, left: 10}]}>
-            <Text
+           <Logo />
+           <View style={[Styles.ViewText, {top: -300, left: 30}]}>
+           <Text
             style={[
               {
                 color: 'black',
                 fontFamily: 'Comfortaa-Bold',
-                fontSize: 18,
+                fontSize: 26,
                 fontStyle: 'normal',
                 fontWeight: 500,
               },
@@ -52,14 +47,15 @@ const CreationEtDeveloppement = ()=>{
               {
                 color: 'black',
                 fontFamily: 'Comfortaa-Bold',
-                fontSize: 18,
+                fontSize: 26,
                 fontStyle: 'normal',
                 fontWeight: 500,
               },
             ]}>
             DÉVELOPPEMENT.
           </Text>
-        </View>
+            </View> 
+            
 
         {/* <View style={[styles.ViewVideo, {top: 0, height: 100, height: 100}]}>
           <Lottie
@@ -68,18 +64,17 @@ const CreationEtDeveloppement = ()=>{
             loop
           />
         </View> */}
-         <Modal
+        <Modal
           animationType="slide"
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => {
             requestLocationPermission, setModalVisible(!modalVisible);
           }}>
-
-            <View style={[Styles.centeredView5, {top: 200}]}>
-              <ScrollView style={[{width: 400, alignSelf: 'center', top: -90}]}>
-              <Text style={[Styles.textBlue3]}>CONSENTEMENT</Text>
-              <Text style={[Styles.textBlue4]}>
+            <View style={[styles.centeredView5, {top: 200}]}>
+            <ScrollView style={[{width: "100%", alignSelf: 'center', top: 30}]}>
+            <Text style={[styles.textBlue3]}>CONSENTEMENT</Text>
+            <Text style={[styles.textBlue4]}>
                 Nous respectons la vie privée de nos utilisateurs. Vos données,
                 vos choix.{'\n'}MyBodyDate utilise des cookies et des
                 informations non sensibles pour assurer le bon fonctionnement de
@@ -87,7 +82,7 @@ const CreationEtDeveloppement = ()=>{
                 consultés ou personnaliser les contenus affichés.{'\n'}Pour en
                 savoir plus sur les cookies, les données utilisées et leur
                 traitement vous pouvez consulter{' '}
-                <Text style={[Styles.textBtnBlue2]}>
+                <Text style={[styles.textBtnBlue2]}>
                   notre politique en matière de cookies et nos engagements en
                   matière de sécurité et de Confidentialité de données
                   personnelles.
@@ -95,17 +90,19 @@ const CreationEtDeveloppement = ()=>{
                 {'\n'}
               </Text>
               <Text
-                style={[styles.textBlack2, {top: 10, width: 320, left: 40}]}>
+                style={[styles.textBlack2, {top: 10, width: 300, left: 37.5}]}>
                 Notre site n&apos;accepte que des profils vérifiés au delà de 7
                 jours.{'\n'}Sinon votre compte sera suspendu.
               </Text>
-              <Text style={[Styles.textBlue4, {top: 30, left: 0}]}>
+              <Text style={[styles.textBlue4, {top: 30, left: 0}]}>
                 Nous sommes conforme RGPD, règlement générale à la
                 règlementation de la protection des données
               </Text>
-              </ScrollView>
+
+            </ScrollView>
+             
             </View>
-            <View style={[Styles.ViewBtnRow, {top: -20}]}>
+            <View style={[styles.ViewBtnRow, {top: -20}]}>
             <TouchableOpacity
               accessibilityLabel="Refuser"
               onPress={() => {
@@ -118,10 +115,11 @@ const CreationEtDeveloppement = ()=>{
               }}>
                 <Text
                 style={[
-                  Styles.textBtn9,
+                  styles.textBtn9,
                   {
                     zIndex: 1,
-                    top: 40,
+                    top: 35,
+                    left:20,
                     color: buttonPressed === 'Refuser' ? '#A70000' : '#0019A7',
                   },
                 ]}>
@@ -129,7 +127,7 @@ const CreationEtDeveloppement = ()=>{
               </Text>
               <Image
                 style={[
-                  {top: 0, width: 150, height: 50, resizeMode: 'contain'},
+                  {top: 0, left:20,width: 130, height: 50, resizeMode: 'contain'},
                 ]}
                 source={
                   buttonPressed === 'Refuser'
@@ -137,7 +135,6 @@ const CreationEtDeveloppement = ()=>{
                     : require('../../assets/boutons/Bouton-Trans-Court.png')
                 }
               />
-
               </TouchableOpacity>
               <TouchableOpacity
               accessibilityLabel="Accepter"
@@ -149,24 +146,24 @@ const CreationEtDeveloppement = ()=>{
                 setButtonPressed('Accepter');
                 setModalVisible(false);
               }}>
-              <Text style={[Styles.textBtn6, {zIndex: 2, top: 40}]}>
-                Accepter
+                <Text style={[styles.textBtn6, {zIndex: 2, top: 30,left:0}]}>
+                {/* Accepter */}
               </Text>
               <Image
                 style={[
-                  {top: 0, width: 150, height: 50, resizeMode: 'contain'},
+                  {top: 16, left:0, width: 150, height: 50, resizeMode: 'contain'},
                 ]}
                 source={
                   buttonPressed === 'Accepter'
                     ? require('../../assets/boutons/Bouton-Rouge-Court.png')
-                    : require('../../assets/boutons/Bouton-Bleu-Court.png')
+                    : require('../../assets/imagesSvg/bouton continuer2.svg')
                 }
               />
-            </TouchableOpacity>
+              </TouchableOpacity>
             </View>
-          </Modal> 
 
-           <View style={[Styles.row, {width: '100%', top: 10}]}>
+          </Modal>
+          <View style={[styles.row, {width: '100%', top: 10}]}>
           <TouchableOpacity
             style={[{}]}
             onPress={() => {
@@ -174,46 +171,129 @@ const CreationEtDeveloppement = ()=>{
               setButtonPressed(true);
             }}
             accessibilityLabel="Passer">
-            <Image
-              style={[
-                {
+              <View style={buttonPressed ? styles.cercle2:styles.cercle}>
+              <Image
+                 style={[
+                 {
                   bottom: 68,
-                  width: 55,
-                  height: 55,
+                  width: 25,
+                  height: 25,  
                   resizeMode: 'contain',
-                  left: 150,
+                  left: 13,
+                  top:10
                 },
               ]}
-              source={
-                buttonPressed
-                  ? require('../../assets/boutons/Passer-Rouge.png')
-                  : require('../../assets/boutons/Passer.png')
-              }
+              source={require('../../assets/imagesSvg/flèche.svg')}
             />
+            
             <Text
-              style={[Styles.textBtn4, {bottom: 110, left: 260, fontSize: 16}]}>
+              style={[styles.textBtn4, {bottom: 10, left: 100, fontSize: 16}]}>
               Passer
             </Text>
-          </TouchableOpacity>
-        </View> 
+              </View>
+            </TouchableOpacity>
+          </View>
         </LinearGradient>
-        </View>
-    )
+    </View>
+  )
+
 }
 
 export default CreationEtDeveloppement;
 
 
 const styles = StyleSheet.create({
-    ViewVideo: {
+  container: {
+    width:"100vw",
+    height:"100vh"
+  },
+  ViewVideo: {
     flex: 3,
     alignItems: 'center',
     // backgroundColor:"red"
     },
+  centeredView5: {
+    flex: 1,
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFF',
+    backgroundColor:"white",
+    width:"100%"
+  },
+
     textBlack2:{
         color: '#000', 
         fontSize: 16, 
         fontFamily: 'Comfortaa-Bold', 
         textAlign: 'left',
-    }
+    },
+    textBlue3: {
+      width: '80%',
+      color: 'black',
+      fontSize: 26,
+      textAlign: 'center',
+      fontFamily: 'Comfortaa-Bold',
+      alignSelf: 'center',
+      marginBottom:"20px"
+    },
+  textBlue4: {
+    width: '80%',
+    color: '#0F0BAE',
+    fontSize: 16,
+    textAlign: 'left',
+    fontFamily: 'Comfortaa-Bold',
+    alignSelf: 'center',
+  },
+  textBtnBlue2: {
+    color: '#0F0BAE',
+    width: '80%',
+    fontSize: 16,
+    textAlign: 'left',
+    textDecorationLine: 'underline',
+  },
+  ViewBtnRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  textBtn9: {
+    color: '#0F0BAE',
+    fontSize: 18,
+    textAlign: 'center',
+    fontFamily: 'Comfortaa',
+  },
+  textBtn6: {
+    color: '#fff',
+    fontSize: 10,
+    textAlign: 'center',
+    fontFamily: 'Comfortaa-Bold',
+  },
+  row: {
+    flexDirection: 'row',
+  },
+  cercle:{
+    borderRadius:50,
+    backgroundColor:"black",
+    width:"120%",
+    height:"100%",
+    top:-180,
+    left:180
+  },
+  cercle2:{
+    borderRadius:50,
+    backgroundColor:"red",
+    width:"120%",
+    height:"100%",
+    top:-180,
+    left:180
+ },
+  textBtn4: {
+    color: 'black',
+    fontSize: 22,
+    textAlign: 'center',
+    textDecorationLine: 'underline',
+    fontFamily: 'Comfortaa-Bold',
+  },
+
 });

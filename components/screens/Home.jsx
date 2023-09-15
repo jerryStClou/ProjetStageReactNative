@@ -4,7 +4,7 @@ import {
   Text,
   ImageBackground,
   TouchableOpacity,
-  Image,
+  Image,StyleSheet
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -26,7 +26,7 @@ import Styles from '../../assets/style/Styles';
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         locations={[0, 0.35, 1]}
-        style={Styles.container}
+        style={styles.container}
       >
         
           <View style={Styles.ViewLogo1}>
@@ -51,3 +51,11 @@ import Styles from '../../assets/style/Styles';
   
 
 export default Home;
+
+
+const styles = StyleSheet.create({
+  container: {
+    width:"100vw",
+    height:"100vh"
+  },
+});

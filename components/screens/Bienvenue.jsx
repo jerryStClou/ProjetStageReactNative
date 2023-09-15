@@ -37,7 +37,7 @@ const Bienvenue = ({route, navigation})=>{
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
         locations={[0, 0.35, 1]}
-        style={Styles.container}
+        style={styles.container}
         >
            <Logo />
            <View style={[Styles.ViewText, {left: 20}]}>
@@ -137,6 +137,10 @@ const Bienvenue = ({route, navigation})=>{
 export default Bienvenue;
 
 const styles = StyleSheet.create({
+  container: {
+    width:"100vw",
+    height:"100vh"
+  },
   ViewStyle: {
     backgroundColor:"white",
     width:"80%",
