@@ -16,48 +16,32 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 
 const CreationEtDeveloppement = ()=>{
+  // constant récupérant la valeur de prénom donnée par l'utilisateur continue dans data passée en paramètre de route
+  // const routeChoice = route.params?.routeName ?? '';
+  // console.log('Choix de route : ', routeChoice);
+
+  //Constante permettant de savoir si l'utilisateur à appuyer sur play ou sur pause
+  const [isPlaying, setIsPlaying] = useState(false);
+  // const btnOpacity = useRef(new Animated.Value(0));
+
   const [modalVisible, setModalVisible] = useState(false);
-  
+  const [consentement, setConsentement] = useState();
   const [buttonPressed, setButtonPressed] = useState(false);
   return(
     <View style={Styles.container}>
-      <LinearGradient
-           colors={['rgb(175,146,255)', 'rgba(202,187,254,1)', 'rgba(209,240,247,1)']}
-           start={{ x: 0, y: 0 }}
-           end={{ x: 1, y: 0 }}
-           locations={[0, 0.35, 1]}
+      <ImageBackground
+           source={require('../../assets/imageBackground/BackgroundCheerFlakes.png')}
           style={styles.container}
         >
-           <Logo />
-           <View style={[Styles.ViewText, {top: -300, left: 30}]}>
-           <Text
-            style={[
-              {
-                color: 'black',
-                fontFamily: 'Comfortaa-Bold',
-                fontSize: 26,
-                fontStyle: 'normal',
-                fontWeight: 500,
-              },
-            ]}>
-            CRÉATION ET
-          </Text>
-          <Text
-            style={[
-              {
-                color: 'black',
-                fontFamily: 'Comfortaa-Bold',
-                fontSize: 26,
-                fontStyle: 'normal',
-                fontWeight: 500,
-              },
-            ]}>
-            DÉVELOPPEMENT.
-          </Text>
-            </View> 
-            
+          <View style={styles.ViewLogo}>
+             <Logo />
+          </View>
+          <View style={styles.ViewText}>
+            <Text style={styles.textStyle1}>CRÉATION ET</Text>
+            <Text style={styles.textStyle1}>DÉVELOPPEMENT.</Text>
+          </View>
 
-        {/* <View style={[styles.ViewVideo, {top: 0, height: 100, height: 100}]}>
+              {/* <View style={[styles.ViewVideo, {top: 0, height: 100, height: 100}]}>
           <Lottie
             source={require('../../assets/animations/Animation-credits.json')}
             autoPlay
@@ -70,11 +54,16 @@ const CreationEtDeveloppement = ()=>{
           visible={modalVisible}
           onRequestClose={() => {
             requestLocationPermission, setModalVisible(!modalVisible);
-          }}>
-            <View style={[styles.centeredView5, {top: 200}]}>
-            <ScrollView style={[{width: "100%", alignSelf: 'center', top: 30}]}>
+          }}
+        >
+          <View style={styles.centeredView5}>
+          <ScrollView style={styles.ScrollViewStyle}>
+            <View style={styles.ViewDiv}>
             <Text style={[styles.textBlue3]}>CONSENTEMENT</Text>
-            <Text style={[styles.textBlue4]}>
+            </View>
+
+         <View style={[styles.ViewText2]}>
+          <Text style={[styles.textBlue4]}>
                 Nous respectons la vie privée de nos utilisateurs. Vos données,
                 vos choix.{'\n'}MyBodyDate utilise des cookies et des
                 informations non sensibles pour assurer le bon fonctionnement de
@@ -82,118 +71,95 @@ const CreationEtDeveloppement = ()=>{
                 consultés ou personnaliser les contenus affichés.{'\n'}Pour en
                 savoir plus sur les cookies, les données utilisées et leur
                 traitement vous pouvez consulter{' '}
-                <Text style={[styles.textBtnBlue2]}>
+                <Text style={[Styles.textBtnBlue2]}>
                   notre politique en matière de cookies et nos engagements en
                   matière de sécurité et de Confidentialité de données
                   personnelles.
                 </Text>
                 {'\n'}
               </Text>
+              </View>      
+              <View style={[styles.ViewText3]}>
+              
               <Text
-                style={[styles.textBlack2, {top: 10, width: 300, left: 37.5}]}>
+                style={[styles.textBlack2]}>
                 Notre site n&apos;accepte que des profils vérifiés au delà de 7
                 jours.{'\n'}Sinon votre compte sera suspendu.
               </Text>
-              <Text style={[styles.textBlue4, {top: 30, left: 0}]}>
+              <Text style={[styles.textBlue5]}>
                 Nous sommes conforme RGPD, règlement générale à la
                 règlementation de la protection des données
               </Text>
-
-            </ScrollView>
-             
-            </View>
-            <View style={[styles.ViewBtnRow, {top: -20}]}>
-            <TouchableOpacity
+              </View>
+             <View style={[styles.lesBoutons]}>
+             <TouchableOpacity
               accessibilityLabel="Refuser"
               onPress={() => {
-                navigation.navigate('Love Coach', {
-                  userConsent: 'Refuser',
-                  routeName: routeChoice,
-                });
+                // navigation.navigate('Love Coach', {
+                //   userConsent: 'Refuser',
+                //   routeName: routeChoice,
+                // });
                 setButtonPressed('Refuser');
-                setModalVisible(false);
-              }}>
-                <Text
-                style={[
-                  styles.textBtn9,
-                  {
-                    zIndex: 1,
-                    top: 35,
-                    left:20,
-                    color: buttonPressed === 'Refuser' ? '#A70000' : '#0019A7',
-                  },
-                ]}>
-                Refuser
-              </Text>
-              <Image
-                style={[
-                  {top: 0, left:20,width: 130, height: 50, resizeMode: 'contain'},
-                ]}
-                source={
-                  buttonPressed === 'Refuser'
-                    ? require('../../assets/boutons/Bouton-Trans-Court-Rouge.png')
-                    : require('../../assets/boutons/Bouton-Trans-Court.png')
-                }
-              />
+                setModalVisible(false);}}
+              style={buttonPressed  === 'Accepter'? styles.boutonStyle3 : styles.boutonStyle2}
+                >
+                <View>
+                  <Text style={styles.textStyle2}>Refuser</Text>
+                </View>
               </TouchableOpacity>
-              <TouchableOpacity
+              
+              <TouchableOpacity 
               accessibilityLabel="Accepter"
               onPress={() => {
-                navigation.navigate('Love Coach', {
-                  userConsent: 'Accepter',
-                  routeName: routeChoice,
-                });
+                // navigation.navigate('Love Coach', {
+                //   userConsent: 'Accepter',
+                //   routeName: routeChoice,
+                // });
                 setButtonPressed('Accepter');
                 setModalVisible(false);
-              }}>
-                <Text style={[styles.textBtn6, {zIndex: 2, top: 30,left:0}]}>
-                {/* Accepter */}
-              </Text>
-              <Image
-                style={[
-                  {top: 16, left:0, width: 150, height: 50, resizeMode: 'contain'},
-                ]}
-                source={
-                  buttonPressed === 'Accepter'
-                    ? require('../../assets/boutons/Bouton-Rouge-Court.png')
-                    : require('../../assets/imagesSvg/bouton continuer2.svg')
-                }
-              />
-              </TouchableOpacity>
-            </View>
+                
+              }}
+              style={buttonPressed  === 'Accepter'? styles.boutonStyle3 : styles.boutonStyle2}
 
-          </Modal>
-          <View style={[styles.row, {width: '100%', top: 10}]}>
-          <TouchableOpacity
-            style={[{}]}
-            onPress={() => {
-              setModalVisible(true);
-              setButtonPressed(true);
-            }}
-            accessibilityLabel="Passer">
-              <View style={buttonPressed ? styles.cercle2:styles.cercle}>
-              <Image
-                 style={[
-                 {
-                  bottom: 68,
-                  width: 25,
-                  height: 25,  
-                  resizeMode: 'contain',
-                  left: 13,
-                  top:10
-                },
-              ]}
-              source={require('../../assets/imagesSvg/flèche.svg')}
-            />
-            
-            <Text
-              style={[styles.textBtn4, {bottom: 10, left: 100, fontSize: 16}]}>
-              Passer
-            </Text>
-              </View>
-            </TouchableOpacity>
+              >
+                <View>
+                  <Text style={styles.textStyle2}>Accepter</Text>
+                </View>
+              </TouchableOpacity>
+             </View>
+              
+            </ScrollView>
           </View>
-        </LinearGradient>
+          
+        </Modal>
+        <View style={styles.ensembleBouton}>
+        <TouchableOpacity  
+          onPress={() => {
+            setModalVisible(true);
+            setButtonPressed(true);}}
+        >
+        <ImageBackground style={styles.boutonStyle}
+           source={require('../../assets/imagesSvg/bouton avancement.svg')}
+        >
+         
+             <Image source={require('../../assets/imagesSvg/flèche.svg')}
+              style={styles.flecheStyle}/>
+          
+         </ImageBackground>
+        </TouchableOpacity>
+
+      <TouchableOpacity
+          onPress={() => {
+            setModalVisible(true);
+            setButtonPressed(true);}}>
+        <View style={styles.DivPasser}>
+          <Text style={styles.passerStyle}>Passer</Text>
+        </View>
+      </TouchableOpacity> 
+      </View>
+         
+
+        </ImageBackground>
     </View>
   )
 
@@ -203,9 +169,58 @@ export default CreationEtDeveloppement;
 
 
 const styles = StyleSheet.create({
+  //Style de l'ImageBackground
   container: {
     width:"100vw",
     height:"100vh"
+  },
+  //Style de la div(block) du Logo
+  ViewLogo:{
+    // backgroundColor:"red",
+    height:"20%"
+  },
+  ViewText:{
+    // backgroundColor:"blue",
+    height:"144px",
+    width:"296px",
+    marginLeft:"10%"
+  },
+  textStyle1:{
+    fontFamily:"Comfortaa",
+    fontSize:"24px",
+  },
+  
+  ensembleBouton:{
+    // backgroundColor:"grey",
+    display:"flex",
+    flexDirection:"row",
+    alignItems:"center",
+    marginTop:"300px",
+    marginLeft:"130px",
+
+  },
+  boutonStyle:{
+    //  backgroundColor:"lightgreen",
+     width:"55px",
+     height:"55px",
+    //  marginLeft:"150%",
+    //  marginTop:"391px",
+     justifyContent:"center",
+     alignItems:"center"
+  },
+  flecheStyle:{
+    width:"12.1px",
+    height:"24.54px",
+  },
+  DivPasser:{
+    width:"79px",
+    height:"25px",
+    marginLeft:"50%"
+  },
+  passerStyle:{
+    fontSize:"16px",
+    fontFamily:"Comfortaa",
+    textDecorationLine:"underline"
   },
   ViewVideo: {
     flex: 3,
@@ -218,16 +233,34 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 40,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFF',
-    backgroundColor:"white",
-    width:"100%"
+    backgroundColor: 'white',
+    // backgroundColor:"white",
+    width:"100%",
+    top:155
   },
-
+  ScrollViewStyle:{
+    top:"20",
+    width:400
+  },
+ViewText3:{
+  marginLeft:36,
+  marginTop:"0px",
+  width:318,
+  height:160,
+  // backgroundColor:"lightblue"
+},
     textBlack2:{
         color: '#000', 
         fontSize: 16, 
         fontFamily: 'Comfortaa-Bold', 
-        textAlign: 'left',
+        // textAlign: 'left',
+    },
+    ViewDiv:{
+      width:296,
+      height:48,
+      marginLeft:47,
+      marginBottom:"10px",
+      marginTop:63
     },
     textBlue3: {
       width: '80%',
@@ -236,15 +269,59 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       fontFamily: 'Comfortaa-Bold',
       alignSelf: 'center',
-      marginBottom:"20px"
+      // marginBottom:"20px",
+      // marginTop:63
+    },
+    ViewText2:{
+      width:317,
+      height:259,
+      marginLeft:36
     },
   textBlue4: {
-    width: '80%',
+    // width: '80%',
     color: '#0F0BAE',
     fontSize: 16,
     textAlign: 'left',
     fontFamily: 'Comfortaa-Bold',
     alignSelf: 'center',
+  },
+  textBlue5:{
+    color:"blue",
+    fontSize:16
+  },
+  lesBoutons:{
+    // backgroundColor:"red",
+    display:"flex",
+    flexDirection:"row"
+  },
+  boutonStyle2:{
+    borderColor:"#D2C2FF",
+    borderWidth:"2px",
+    borderStyle:"solid",
+    borderRadius:50,
+    width:159,
+    height:56,
+    marginLeft:24,
+    display:"flex",
+    alignItems:"center",
+    justifyContent:"center"
+  },
+  textStyle2:{
+    fontSize:18,
+    color:"#0019A7"
+  },
+  boutonStyle3:{
+    borderColor:"#D2C2FF",
+    borderWidth:"2px",
+    borderStyle:"solid",
+    backgroundColor:"#D2C2FF",
+    borderRadius:50,
+    width:159,
+    height:56,
+    marginLeft:24,
+    display:"flex",
+    alignItems:"center",
+    justifyContent:"center"
   },
   textBtnBlue2: {
     color: '#0F0BAE',
@@ -297,3 +374,5 @@ const styles = StyleSheet.create({
   },
 
 });
+
+

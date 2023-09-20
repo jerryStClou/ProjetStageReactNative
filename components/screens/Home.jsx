@@ -21,15 +21,12 @@ import Styles from '../../assets/style/Styles';
     }, [navigation]);
   
     return (
-      <LinearGradient
-        colors={['rgb(175,147,255)', 'rgba(211,211,252,1)', 'rgba(201,237,246,1)']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        locations={[0, 0.35, 1]}
-        style={styles.container}
-      >
-        
-          <View style={Styles.ViewLogo1}>
+      
+      <ImageBackground
+      style={Styles.container}
+      source={require('../../assets/imageBackground/BackgroundCheerFlakes.png')}>
+            
+          <View style={styles.ViewLogo1}>
             <Image
               style={Styles.logo1}
               source={require('../../assets/imagesSvg/Rectangle 94.svg')}
@@ -45,7 +42,7 @@ import Styles from '../../assets/style/Styles';
                   </TouchableOpacity>
               </View> */}
        
-      </LinearGradient>
+      </ImageBackground>
     );
   };
   
@@ -56,6 +53,19 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     width:"100vw",
-    height:"100vh"
+    height:"100vh",
+  },
+  ViewLogo1: {
+    width:"100vw",
+    height:"100vh",
+    display:"flex",
+    alignItems:"center",
+    justifyContent:"center"
+  },
+  logo1: {
+    resizeMode: 'contain',
+    width: 250,
+    height: 100,
+    alignSelf: 'center',
   },
 });

@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
   },
   logo2: {
     resizeMode: 'contain',
-    width: 200,
-    height: 50,
+    width: 210,
+    height: 60,
     top: 0,
     left: -30,
   },

@@ -32,11 +32,8 @@ const Bienvenue = ({route, navigation})=>{
 
   return(
     
-      <LinearGradient
-      colors={['rgb(175,146,255)', 'rgba(202,187,254,1)', 'rgba(209,240,247,1)']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0 }}
-        locations={[0, 0.35, 1]}
+      <ImageBackground
+      source={require('../../assets/imageBackground/BackgroundCheerFlakes.png')}
         style={styles.container}
         >
            <Logo />
@@ -128,7 +125,7 @@ const Bienvenue = ({route, navigation})=>{
           </Text>
 
            </TouchableOpacity>
-      </LinearGradient>
+      </ImageBackground>
           
     
   )
